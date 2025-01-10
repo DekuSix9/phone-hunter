@@ -41,9 +41,9 @@ const displayPhones=(phones,isShowall)=>{
             </figure>
             <div class="card-body">
                <h2 class="card-title">${phone.phone_name}</h2>
-               <p>${phone.slug}</p>
-               <div class="card-actions justify-end">
-               <button class="btn btn-primary">Buy Now</button>
+               <p>There are many variations <br>i jf of passages of  available, but the <br> majority have suffered</p>
+               <div class="card-actions flex justify-center">
+               <button onclick="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
                </div>
             </div>
 
@@ -54,6 +54,15 @@ const displayPhones=(phones,isShowall)=>{
 //hide loading spinner
 toggleLoadingspinner(false)
 
+}
+
+//
+const handleShowDetails= async (id)=>{
+   console.log(id)
+
+   //load single phone
+   const res= await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+   const data=res.json();
 }
 
 
