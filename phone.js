@@ -58,11 +58,38 @@ toggleLoadingspinner(false)
 
 //
 const handleShowDetails= async (id)=>{
-   console.log(id)
 
-   //load single phone
+
+//load single phone
    const res= await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
-   const data=res.json();
+   const data= await res.json();
+   const phone=data.data;
+   showPhoneDetails(phone);
+   console.log(phone)
+}
+
+const showPhoneDetails=(phone)=>{
+   
+   const showDetailsContainer=document.getElementById('show_details_container');
+
+   showDetailsContainer.innerHTML = `
+  <div class="flex flex-col items-center space-y-4">
+    <img class="mx-auto" src="${phone.image}" alt="Phone Image" />
+    <div class="text-left space-y-2">
+    <p class="font-bold text-3xl my-8"><span ></span> ${phone.name}</p>
+      <p><span class="font-bold">Storage:</span> ${phone.mainFeatures.storage}</p>
+      <p><span class="font-bold">Display Size:</span>${phone.mainFeatures.displaySize}</p>
+      <p><span class="font-bold">Chip Set:</span> ${phone.mainFeatures.chipSet}</p>
+      <p><span class="font-bold">Memory:</span> ${phone.mainFeatures.memory}</p>
+      <p><span class="font-bold">GPS:</span> ${phone.others.GPS}</p>
+    </div>
+  </div>
+`;
+
+
+
+
+   show_details_modal.showModal();
 }
 
 
